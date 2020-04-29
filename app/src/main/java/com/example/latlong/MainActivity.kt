@@ -5,22 +5,31 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     val RequestPermissionCode = 1
     var mLocation: Location? = null
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+        getLastLocation()
+    }
+
+    fun buttonClicked(view: View){
+        val toast = Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT)
+        toast.show()
         getLastLocation()
     }
 
@@ -32,12 +41,13 @@ class MainActivity : AppCompatActivity() {
         ) {
             requestPermission()
         } else {
-            fusedLocationClient.lastLocation
+            fusedLocationProviderClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     mLocation = location
                     if (location != null) {
                         latitude.text = location.latitude.toString()
                         longitude.text = location.longitude.toString()
+                        time.text = Date(location.time).toString()
                     }
                 }
         }
