@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -27,9 +28,15 @@ class MainActivity : AppCompatActivity() {
         getLastLocation()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+    }
+
+//    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+//    ClipData clip = ClipData.newPlainText("label", "Text to copy");
+//    clipboard.setPrimaryClip(clip);
+
     fun buttonClicked(view: View){
-        val toast = Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT)
-        toast.show()
         getLastLocation()
     }
 

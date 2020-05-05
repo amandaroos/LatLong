@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">LatLong</string>
     <string name="refresh">Refresh</string>
+    <string name="action_copy">Copy Coordinates</string>
 </resources>
