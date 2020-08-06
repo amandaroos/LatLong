@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">LatLong</string>
+    <string name="app_name">Latitude and Longitude</string>
     <string name="refresh">Refresh</string>
     <string name="action_copy">Copy Coordinates</string>
+    <string name="updated">Updated</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="action_clear">Clear</string>
 </resources>

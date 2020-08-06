@@ -1,13 +1,17 @@
 package com.example.latlong
 
 import android.Manifest
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -29,14 +33,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
-//    ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-//    ClipData clip = ClipData.newPlainText("label", "Text to copy");
-//    clipboard.setPrimaryClip(clip);
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-    fun buttonClicked(view: View){
+        return when (item.itemId) {
+            R.id.action_copy -> {
+                val coordinates = "${latitude.text}, ${longitude.text}"
+
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                val clip = ClipData.newPlainText("text", coordinates)
+                clipboard.setPrimaryClip(clip)
+                true
+            }
+            R.id.action_clear -> {
+                longitude.text = ""
+                latitude.text = ""
+                time.text = ""
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun buttonClicked(view: View) {
         getLastLocation()
     }
 
@@ -66,6 +88,5 @@ class MainActivity : AppCompatActivity() {
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
             RequestPermissionCode
         )
-        this.recreate()
     }
 }
