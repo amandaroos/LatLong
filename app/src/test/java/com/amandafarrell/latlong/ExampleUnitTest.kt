@@ -1,4 +1,4 @@
-package com.example.latlong
+package com.amandafarrell.latlong
 
 import org.junit.Test
 

@@ -1,22 +1,21 @@
-package com.example.latlong
+package com.amandafarrell.latlong
 
 import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +51,12 @@ class MainActivity : AppCompatActivity() {
                 longitude.text = ""
                 latitude.text = ""
                 time.text = ""
+                date.text = ""
+                true
+            }
+            R.id.action_donate ->{
+                val intent = Intent(this@MainActivity, DonateActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -76,7 +81,8 @@ class MainActivity : AppCompatActivity() {
                     if (location != null) {
                         latitude.text = location.latitude.toString()
                         longitude.text = location.longitude.toString()
-                        time.text = Date(location.time).toString()
+                        time.text = android.text.format.DateFormat.getTimeFormat(applicationContext).format(location.time)
+                        date.text = android.text.format.DateFormat.getDateFormat(getApplicationContext()).format(location.time)
                     }
                 }
         }

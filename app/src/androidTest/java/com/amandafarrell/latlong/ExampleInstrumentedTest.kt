@@ -1,4 +1,4 @@
-package com.example.latlong
+package com.amandafarrell.latlong
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

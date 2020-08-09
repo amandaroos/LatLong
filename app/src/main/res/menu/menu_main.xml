@@ -12,9 +12,9 @@
         android:title="@string/action_clear"
         app:showAsAction="never" />
 
-    <!--    <item-->
-    <!--        android:id="@+id/action_donate"-->
-    <!--        android:title="@string/action_donate"-->
-    <!--        android:icon="@drawable/icon_donate"-->
-    <!--        app:showAsAction="ifRoom" />-->
+        <item
+            android:id="@+id/action_donate"
+            android:title="@string/action_donate"
+            android:icon="@drawable/icon_donate"
+            app:showAsAction="ifRoom" />
 </menu>
